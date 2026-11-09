@@ -1,0 +1,13 @@
+{
+  "base": {
+    "db": {
+      "host": "localhost",
+      "port": 5432
+    }
+  },
+  "override": {
+    "db": {
+      "host": "${DB_HOST}"
+    }
+  }
+}

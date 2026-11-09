@@ -1,0 +1,12 @@
+[
+  {
+    "id": 10,
+    "timestamp": 1,
+    "kind": "created"
+  },
+  {
+    "id": 20,
+    "timestamp": 1,
+    "kind": "updated"
+  }
+]

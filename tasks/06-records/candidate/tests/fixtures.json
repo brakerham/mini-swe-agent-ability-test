@@ -1,0 +1,3 @@
+{
+  "csv": "id,email,tags\n1,alice@example.invalid,staff;remote\n"
+}

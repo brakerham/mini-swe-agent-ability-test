@@ -1,0 +1,64 @@
+name: Model-free benchmark checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.12']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit tests without model dependencies
+        run: python -m unittest discover -s tests -v
+      - name: Validate task structure
+        run: python -m benchmark validate
+      - name: Verify baseline and reference solutions
+        run: python -m benchmark selftest
+
+  docker-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build credential-free task image
+        run: docker build -f Dockerfile.task -t mini-swe-benchmark:v1 .
+      - name: Exercise real task provisioning and isolated grading without a model
+        env:
+          BENCHMARK_DOCKER_TESTS: '1'
+        run: python -m unittest discover -s tests -p test_docker_runtime.py -v
+      - name: Calibrate every task in the isolated grader
+        run: python -m benchmark selftest --docker --output runs/docker-selftest.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-calibration
+          path: runs/docker-selftest.json
+
+  adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned agent dependencies
+        run: python -m pip install -r requirements-agent.txt
+      - name: Exercise real mini adapter with fake HTTP and blocked sockets
+        run: python -m unittest discover -s tests -p test_mini_adapter.py -v

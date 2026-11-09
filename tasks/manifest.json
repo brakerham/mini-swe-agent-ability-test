@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "01-money",
+      "title": "Invoice decimal arithmetic",
+      "category": "bugfix / numeric correctness",
+      "difficulty": "medium",
+      "weight": 1,
+      "allowed_paths": [
+        "src/billing/money.py",
+        "src/billing/invoice.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "id": "02-config",
+      "title": "Layered configuration expansion",
+      "category": "feature / recursive data handling",
+      "difficulty": "medium",
+      "weight": 1,
+      "allowed_paths": [
+        "src/configkit/merge.py",
+        "src/configkit/loader.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "id": "03-pagination",
+      "title": "SQLite event keyset pagination",
+      "category": "bugfix / database API",
+      "difficulty": "hard",
+      "weight": 1,
+      "allowed_paths": [
+        "src/eventlog/cursor.py",
+        "src/eventlog/store.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "id": "04-dependencies",
+      "title": "Stable dependency planner",
+      "category": "algorithm / validation",
+      "difficulty": "hard",
+      "weight": 1,
+      "allowed_paths": [
+        "src/buildplan/graph.py",
+        "src/buildplan/planner.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "id": "05-cache",
+      "title": "LRU cache with deterministic TTL",
+      "category": "bugfix / stateful API",
+      "difficulty": "medium",
+      "weight": 1,
+      "allowed_paths": [
+        "src/ttlcache/cache.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "id": "06-records",
+      "title": "CSV contact import and export",
+      "category": "feature / parsing and data quality",
+      "difficulty": "hard",
+      "weight": 1,
+      "allowed_paths": [
+        "src/contactio/normalize.py",
+        "src/contactio/csvio.py"
+      ],
+      "public_command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    }
+  ]
+}

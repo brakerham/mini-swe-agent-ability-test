@@ -1,0 +1,13 @@
+{
+  "graph": {
+    "api": [
+      "schema",
+      "client"
+    ],
+    "schema": [],
+    "client": [
+      "schema"
+    ],
+    "docs": []
+  }
+}

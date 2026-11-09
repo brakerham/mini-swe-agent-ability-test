@@ -1,0 +1,5 @@
+# Direct integration dependencies. Capture all transitive versions with pip freeze
+# in the run metadata; these are not a complete transitive lockfile.
+mini-swe-agent==2.4.6
+litellm==1.93.1
+openai==2.26.0

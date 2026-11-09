@@ -1,0 +1,11 @@
+{
+  "model": "deepseek-v4-pro",
+  "api_base": "https://api.deepseek.com",
+  "thinking": "disabled",
+  "temperature": 0.0,
+  "max_steps": 60,
+  "max_output_tokens": 4096,
+  "request_timeout_seconds": 90,
+  "command_timeout_seconds": 30,
+  "wall_time_seconds": 900
+}
