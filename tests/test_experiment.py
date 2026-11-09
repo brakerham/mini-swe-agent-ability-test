@@ -15,7 +15,8 @@ class ExperimentTests(unittest.TestCase):
                     worker_code=0, repetitions=1, fail_start=False):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
-        output = Path(temporary.name) / "experiment"
+        # Windows runner TEMP can use an 8.3 alias; compare canonical paths.
+        output = (Path(temporary.name) / "experiment").resolve()
         commands = []
         task = core.task_list()[0]
         image = "sha256:" + "f" * 64
